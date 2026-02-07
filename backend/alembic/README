@@ -1,0 +1,61 @@
+# Alembic Setup for Database Migrations
+
+Follow these steps to configure and use Alembic for managing your database schema migrations.
+
+## 1. Initialize Alembic (First Time Only)
+
+```sh
+alembic init alembic
+```
+
+This creates an `alembic` directory and a configuration file.
+
+## 2. Configure Alembic
+
+- **Set the database URL** in `alembic.ini`:
+
+```sh
+sqlalchemy.url = sqlite:///./database.db
+```
+
+- **Import your models and set metadata** in `alembic/env.py`:
+
+```python
+from sqlmodel import SQLModel
+from main import Hero, Team, Mission, HeroMissionLink
+
+target_metadata = SQLModel.metadata
+```
+
+## 3. Create a Migration
+
+After modifying your models, generate a new migration script:
+
+```sh
+alembic revision --autogenerate -m "Describe your migration"
+```
+
+Replace `"Describe your migration"` with a meaningful message.
+
+## 4. Apply Migrations
+
+Upgrade your database to the latest revision:
+
+```sh
+alembic upgrade head
+```
+
+## 5. Apply Seeds
+
+To seed your database, run the following Python file from the root directory of the server-side project:
+
+```sh
+python -m api.run_seeds
+```
+
+---
+
+**Tip:**  
+Review generated migration scripts before applying them to ensure correctness.
+
+For more details, see the [Alembic documentation](https://alembic.sqlalchemy.org/).

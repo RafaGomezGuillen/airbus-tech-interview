@@ -1,0 +1,35 @@
+services:
+  # Backend service (FastAPI)
+  backend:
+    build:
+      context: ./backend
+      dockerfile: dockerfile
+    container_name: aircraft-api
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./backend:/app
+    networks:
+      - aircraft-network
+    command: python -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  # Frontend service (React + Nginx)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: dockerfile
+    container_name: aircraft-ui
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - aircraft-network
+    environment:
+      - VITE_API_URL=http://backend:8000
+
+networks:
+  aircraft-network:
+    driver: bridge
