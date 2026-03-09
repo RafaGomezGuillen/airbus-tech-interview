@@ -1,4 +1,16 @@
-# Aircraft ETL System
+# Airbus Technical Interview
+
+This was a technical interview repository for Airbus. I passed all interviews for them... But this was their response after all:
+
+```txt
+Dear Rafael Guillén,
+
+Thank you for the pleasant conversations and for your interest in working with our company.
+
+We are interested in working with you. Unfortunately, there are no suitable vacancies at the moment. Therefore, we would like to include you in our candidate database in order to find a project together with our customers that fits your qualifications and expectations. We kindly ask for your patience and will contact you as soon as possible.
+
+Should anything change in your career situation we would be glad if you would inform us about this. Thank you!
+```
 
 A full-stack web application for managing aircraft, materials, and orders using ETL processes.
 
